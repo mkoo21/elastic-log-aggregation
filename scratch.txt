@@ -1,0 +1,8 @@
+NGINX - add filebeat to container (maybe some other beats)
+official image softlinks access.log and error.log to stdout/stderr, so that needs to be changed (probably best to have Beats in the same nginx container)
+
+- Log rotation - logrotate comes installed in the official image
+
+Need elasticsearch running somewhere to output to
+docker pull docker.elastic.co/elasticsearch/elasticsearch:6.4.3
+

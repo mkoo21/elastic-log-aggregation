@@ -1,0 +1,24 @@
+version: '3'
+services:
+  nginx: 
+    build: ./nginx
+    image: nginx-server
+    container_name: nginx-server
+    ports:
+      - "8080:80"
+    volumes:
+      - nginx-logs:/var/log/nginx
+  elasticsearch: 
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node # dev only
+    ports:
+      - "9200:9200"
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.0.0
+    container_name: filebeat
+    volumes: 
+      - nginx-logs:/var/log/nginx
+volumes:
+  nginx-logs:
