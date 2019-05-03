@@ -1,3 +1,8 @@
+## Overview
+Here we have an nginx server in a docker container that shares a volume with a filebeat container on the same host. Elasticsearch and Kibana also run on the same host in this case, although there is no need for this since there's no need for them to share a volume with any other components of this system. 
+
+Start by spinning up the stack with `docker-compose up --build -d`, then create some access logs with `curl localhost:8080`.
+
 ## Elasticsearch
 - List indices: `curl $ES_HOSTNAME:9200/_cat/indices`
 - Get mappings: `curl $ES_HOSTNAME:9200/$INDEX/_mapping` (You can use the mapping API to make changes like field type)
