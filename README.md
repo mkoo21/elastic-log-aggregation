@@ -18,3 +18,4 @@
 
 ## TODO
 logrotate
+metricbeat
