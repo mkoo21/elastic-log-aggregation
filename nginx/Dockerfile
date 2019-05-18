@@ -14,6 +14,6 @@ RUN rm /var/log/nginx/*.log
 #  && dpkg -i filebeat-7.0.0-amd64.deb \
 #  && filebeat modules enable nginx
 
-#ADD filebeat.yml /etc/filebeat/filebeat.yml
-#ADD filebeat.nginx.yml /etc/filebeat/modules.d/nginx.yml
+#COPY filebeat.yml /etc/filebeat/filebeat.yml
+#COPY filebeat.nginx.yml /etc/filebeat/modules.d/nginx.yml
 

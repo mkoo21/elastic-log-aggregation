@@ -18,12 +18,16 @@ services:
     container_name: kibana
     ports:
       - "5601:5601"
+  metricbeat:
+    build: ./metricbeat
+    image: metricbeat
+    container_name: metricbeat
   nginx: 
     build: ./nginx
     image: nginx-server
     container_name: nginx-server
     ports:
-      - "8080:80"
+      - "8888:80"
     volumes:
       - nginx-logs:/var/log/nginx
 volumes:
