@@ -1,0 +1,9 @@
+#!/bin/bash
+
+/usr/share/metricbeat/http_probe
+
+/usr/share/metricbeat/metricbeat setup --dashboards -e \
+-E setup.kibana.host=kibana:5601 \
+-E output.elasticsearch.hosts=['elasticsearch:9200']
+
+/usr/share/metricbeat/metricbeat

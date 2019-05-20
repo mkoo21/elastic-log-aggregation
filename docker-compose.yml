@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   elasticsearch: 
     image: docker.elastic.co/elasticsearch/elasticsearch:7.0.0
@@ -11,6 +11,9 @@ services:
     build: ./filebeat
     image: filebeat
     container_name: filebeat
+    depends_on:
+      - elasticsearch
+      - kibana
     volumes: 
       - nginx-logs:/var/log/nginx
   kibana:
@@ -22,6 +25,9 @@ services:
     build: ./metricbeat
     image: metricbeat
     container_name: metricbeat
+    depends_on:
+      - elasticsearch
+      - kibana
   nginx: 
     build: ./nginx
     image: nginx-server

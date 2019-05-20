@@ -1,0 +1,9 @@
+#!/bin/bash
+
+/usr/share/filebeat/http_probe
+
+/usr/share/filebeat/filebeat setup --dashboards -e \
+-E setup.kibana.host=kibana:5601 \
+-E output.elasticsearch.hosts=['elasticsearch:9200']
+
+/usr/share/filebeat/filebeat
