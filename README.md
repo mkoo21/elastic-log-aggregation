@@ -1,7 +1,8 @@
 ## Overview
-Here we have an nginx server in a docker container that shares a volume with a filebeat container on the same host. Elasticsearch and Kibana also run on the same host in this case, although there is no need for this since there's no need for them to share a volume with any other components of this system. 
+Here we have dockerized nginx-server running with Elasticsearch and Kibana also run on the same host (ES and Kibana don't actually need to be on the same host). 
+We also have filebeat and metricbeat containers to pull data from nginx (filebeat needs to share a volume with nginx and so either needs to run on the same host or needs to be installed in the same server/container as nginx).
 
-Start by spinning up the stack with `docker-compose up --build -d`, then create some access logs with `curl localhost:8080`.
+Start by spinning up the stack with `docker-compose up --build -d`, then create some access logs with `curl localhost:8080`. The whole stack might take a few minutes to complete setup and be ready for action; first ES/Kibana will take a moment to be ready for service, then filebeat/metricbeat will run setup to create some ES index patterns and dashboards. 
 
 ## Elasticsearch
 - List indices: `curl $ES_HOSTNAME:9200/_cat/indices`
@@ -25,4 +26,7 @@ Start by spinning up the stack with `docker-compose up --build -d`, then create 
 
 ## TODO
 logrotate
-metricbeat
+
+## Prod usage
+- You definitely need to have at least 1 additional data shard. Don't run ES in single-node mode.
+- You definitely want to buy the security X-Pack before exposing data to the internet.
